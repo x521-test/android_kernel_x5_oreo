@@ -1,6 +1,4 @@
 sudo: required
-language: cpp
-compiler: gcc
 dist: trusty
 
 before_install:
@@ -10,7 +8,13 @@ before_install:
 install: 
   - sudo apt-get install -qq g++-7 
   - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 90
+  
+before_script:
+  - git clone https://github.com/svoboda18/android_kernel_x5_oreo kernel
+  - cd kernel
+  - rm -rf *.log *.zip *zImage
 
 script: 
+  - cd kernel
   - chmod +x travis-build.sh
   - bash travis-build.sh
