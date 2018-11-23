@@ -7,3 +7,14 @@ script:
   
 after_success:
   - cp arch/arm/boot/zImage-dtb X5-DarkGKernel-Build-$(date +"%Y%m%d")-zImage
+
+deploy:
+  skip_cleanup: true
+  provider: releases
+  api_key: "$GITHUB_API_KEY"
+  file_glob: true
+  file: X5-DarkGKernel*
+  on:
+    tags: true
+    repo: svoboda18/android_kernel_x5_oreo
+    branch: master
