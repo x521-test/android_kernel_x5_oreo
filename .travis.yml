@@ -2,11 +2,11 @@ sudo: required
 dist: trusty
   
 before_script:
-  - git clone https://github.com/svoboda18/android_kernel_x5_oreo kernel_oreo
+  - cd $HOME && git clone https://github.com/svoboda18/android_kernel_x5_oreo kernel_oreo
   - cd kernel_oreo
   - rm -rf *.log *.zip *zImage
 
 script: 
-  - cd kernel_oreo
+  - cd $HOME && cd kernel_oreo
   - chmod +x travis-build.sh
   - bash travis-build.sh
