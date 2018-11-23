@@ -1,8 +1,6 @@
 sudo: required
 
 script:
-  - cd $HOME
   - rm -rf *.log *zImage* gcc
-  - ls
   - chmod +x travis-build.sh
   - bash travis-build.sh
