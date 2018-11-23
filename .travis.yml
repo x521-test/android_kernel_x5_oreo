@@ -4,3 +4,21 @@ script:
   - rm -rf *.log *zImage* gcc
   - chmod +x travis-build.sh
   - bash travis-build.sh
+  
+after_success:
+  - cp arch/arm/boot/zImage-dtb X5-DarkGKernel-Build-$(date +"%Y%m%d")-$(od -vAn -N2 -tu2 < /dev/urandom)-zImage
+
+deploy:
+  skip_cleanup: true
+  provider: releases
+  api_key: "$GITHUB_API_KEY"
+  file_glob: true
+  file: $HOME/twrp/*.img
+  on:
+    tags: "$(date +"%Y%m%d")-$(od -vAn -N2 -tu2 < /dev/urandom)"
+    repo: svoboda18/android_kernel_x5_oreo
+    branch: master
+
+branches:
+  except:
+    - /^(?i:untagged)-.*$/
