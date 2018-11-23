@@ -56,7 +56,7 @@ function BUILD() {
         echo "${PURP} READING DEFCONFIG..."
         make O=out/ TARGET_ARCH=arm X5_bsp_defconfig | tee -a defconfig.log
         echo "${YLW} BUILDING KERNEL..." 
-        make -j$(nproc -all) O=out/ TARGET_ARCH=arm | tee -a Kernel.log
+        make -j$(nproc --all) O=out/ TARGET_ARCH=arm | tee -a Kernel.log
         OIMAGE=out/arch/arm/boot/zImage-dtb
 }
 function CHECK() {
