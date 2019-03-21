@@ -115,7 +115,7 @@ fi
 function BUILD() {
         mkdir -p out
         echo "${PURP} READING DEFCONFIG..."
-        make O=out/ TARGET_ARCH=arm X5_bsp_defconfig | tee -a defconfig.log
+        make O=out/ TARGET_ARCH=arm maya_defconfig | tee -a defconfig.log
         echo "${YLW} BUILDING KERNEL..." 
         make -j6 O=out/ TARGET_ARCH=arm | tee -a Kernel.log
         OIMAGE=out/arch/arm/boot/zImage-dtb
